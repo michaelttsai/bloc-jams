@@ -39,7 +39,7 @@ html {
      .column.third { width: 33.3%; }
      .column.fourth { width: 25%; }
      .column.flow-opposite { float: right; }
-         
+
    /* Style information will go here */
  }
 
@@ -48,3 +48,12 @@ html {
    html { font-size: 120%; }
    /* Style information will go here */
  }
+ .clearfix::before,
+.clearfix::after {
+   content: " ";
+   display: table;
+}
+
+.clearfix::after {
+   clear: both;
+}
