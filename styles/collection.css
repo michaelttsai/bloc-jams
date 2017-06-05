@@ -38,3 +38,6 @@ body.collection {
  .collection-album-container img {
      width: 80%;
  }
+ .links-container .navbar-link:active{
+   background-color: white;
+ }
