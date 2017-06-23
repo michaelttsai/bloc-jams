@@ -104,8 +104,17 @@
      }
 };
 var findParentByClassName = function(element, targetClass) {
+
     if (element) {
         var currentParent = element.parentElement;
+//assignment 26 code
+//// how can I test this code? 
+      if (element.parentElement === null){
+        console.log("No Parent Found")
+      }
+      else if (currentParent.className !== targetClass){
+        console.log("No Parent Found With That Class Name")
+      }
         while (currentParent.className !== targetClass && currentParent.className !== null) {
             currentParent = currentParent.parentElement;
         }
