@@ -238,6 +238,25 @@ var previousSong = function() {
            $('.main-controls .play-pause').html(playerBarPauseButton);
        };
 
+ var filterTimeCode = function(){
+   var setCurrentTimeInPlayerBar = function(currentTime){
+   .current-time = currentTime.text
+   updateSeekBarWhileSongPlays();
+ };
+
+ var setTotalTimeInPlayerBar = function(totalTime){
+   .total-time = totalTime.text;
+   updatePlayerBarSong();
+ };
+};
+
+ var filterTimeCode = function(timeInSeconds){
+   var seconds = parseFloat(timeInSeconds);
+   var minutes = Math.floor(timeInSeconds);
+   return minutes + ":" + seconds;
+ };
+ ////dont understand 5th step. (Wrap the songLength variable in createSongRow() in a filterTimeCode() call so the time lengths are formatted.)
+ 
  // Album button templates
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
  var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
