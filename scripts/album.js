@@ -32,7 +32,7 @@
          '<tr class="album-view-song-item">'
        + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
        + '  <td class="song-item-title">' + songName + '</td>'
-       + '  <td class="song-item-duration">' + songLength + '</td>'
+       + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
        + '</tr>'
        ;
 
@@ -123,6 +123,7 @@
                     var seekBarFillRatio = this.getTime() / this.getDuration();
                     var $seekBar = $('.seek-control .seek-bar');
                     updateSeekPercentage($seekBar, seekBarFillRatio);
+                    setCurrentTimeInPlayerBar(this.getTime());
                 });
             }
         };
@@ -236,27 +237,29 @@ var previousSong = function() {
            $('.currently-playing .artist-name').text(currentAlbum.artist);
            $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
            $('.main-controls .play-pause').html(playerBarPauseButton);
+           setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
        };
 
- var filterTimeCode = function(){
-   var setCurrentTimeInPlayerBar = function(currentTime){
-   .current-time = currentTime.text
-   updateSeekBarWhileSongPlays();
+       var setCurrentTimeInPlayerBar = function(currentTime){
+         currentTime = filterTimeCode(currentTime);
+          $('.current-time').text(currentTime);
  };
 
- var setTotalTimeInPlayerBar = function(totalTime){
-   .total-time = totalTime.text;
-   updatePlayerBarSong();
+      var setTotalTimeInPlayerBar = function(totalTime){
+       totalTime = filterTimeCode(totalTime);
+        $('.total-time').text(totalTime);
  };
-};
+
 
  var filterTimeCode = function(timeInSeconds){
    var seconds = parseFloat(timeInSeconds);
-   var minutes = Math.floor(timeInSeconds);
+   var minutes = Math.floor(seconds / 60);
+   seconds = seconds - (minutes * 60);
+   seconds = Math.floor(seconds);
    return minutes + ":" + seconds;
  };
  ////dont understand 5th step. (Wrap the songLength variable in createSongRow() in a filterTimeCode() call so the time lengths are formatted.)
- 
+
  // Album button templates
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
  var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
